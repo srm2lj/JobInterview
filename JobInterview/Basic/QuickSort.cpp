@@ -17,17 +17,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 #include <boost/test/auto_unit_test.hpp>
-#include "Reverse.h"
+#include "QuickSort.h"
 
-BOOST_AUTO_TEST_CASE(TestReverse)
+BOOST_AUTO_TEST_CASE(TestQuickSort)
 {
 	std::string str;
-	Reverse(str.begin(), str.end());
+	basic::QuickSort(str.begin(), str.end());
 	BOOST_CHECK_EQUAL(str, "");
-	str = "abcde";
-	Reverse(str.begin(), str.end());
-	BOOST_CHECK_EQUAL(str, "edcba");
-	str = "abcd";
-	Reverse(str.begin(), str.end());
-	BOOST_CHECK_EQUAL(str, "dcba");
+	for (size_t count = 10; count; --count)
+	{
+		str = "abcdefgh";
+		std::random_shuffle(str.begin(), str.end());
+		basic::QuickSort(str.begin(), str.end());
+		BOOST_CHECK_EQUAL(str, "abcdefgh");
+		str = "abcdefghi";
+		std::random_shuffle(str.begin(), str.end());
+		basic::QuickSort(str.begin(), str.end());
+		BOOST_CHECK_EQUAL(str, "abcdefghi");
+	}
 }

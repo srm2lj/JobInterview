@@ -17,22 +17,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 #include <boost/test/auto_unit_test.hpp>
-#include "QuickSort.h"
+#include "BubbleSort.h"
 
-BOOST_AUTO_TEST_CASE(TestQuickSort)
+BOOST_AUTO_TEST_CASE(TestBubbleSort)
 {
 	std::string str;
-	QuickSort(str.begin(), str.end());
+	basic::BubbleSort(str.begin(), str.end());
 	BOOST_CHECK_EQUAL(str, "");
 	for (size_t count = 10; count; --count)
 	{
 		str = "abcdefgh";
 		std::random_shuffle(str.begin(), str.end());
-		QuickSort(str.begin(), str.end());
+		basic::BubbleSort(str.begin(), str.end());
 		BOOST_CHECK_EQUAL(str, "abcdefgh");
 		str = "abcdefghi";
 		std::random_shuffle(str.begin(), str.end());
-		QuickSort(str.begin(), str.end());
+		basic::BubbleSort(str.begin(), str.end());
 		BOOST_CHECK_EQUAL(str, "abcdefghi");
 	}
 }

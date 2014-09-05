@@ -17,22 +17,17 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <string>
 #include <boost/test/auto_unit_test.hpp>
-#include "BubbleSort.h"
+#include "Reverse.h"
 
-BOOST_AUTO_TEST_CASE(TestBubbleSort)
+BOOST_AUTO_TEST_CASE(TestReverse)
 {
 	std::string str;
-	BubbleSort(str.begin(), str.end());
+	basic::Reverse(str.begin(), str.end());
 	BOOST_CHECK_EQUAL(str, "");
-	for (size_t count = 10; count; --count)
-	{
-		str = "abcdefgh";
-		std::random_shuffle(str.begin(), str.end());
-		BubbleSort(str.begin(), str.end());
-		BOOST_CHECK_EQUAL(str, "abcdefgh");
-		str = "abcdefghi";
-		std::random_shuffle(str.begin(), str.end());
-		BubbleSort(str.begin(), str.end());
-		BOOST_CHECK_EQUAL(str, "abcdefghi");
-	}
+	str = "abcde";
+	basic::Reverse(str.begin(), str.end());
+	BOOST_CHECK_EQUAL(str, "edcba");
+	str = "abcd";
+	basic::Reverse(str.begin(), str.end());
+	BOOST_CHECK_EQUAL(str, "dcba");
 }

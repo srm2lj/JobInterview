@@ -17,26 +17,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
-#include <iterator>
-
-template <typename _TIterator>
-void QuickSort(_TIterator begin, _TIterator end)
+namespace basic
 {
-	if (begin < end)
+template <typename _TIterator>
+void BubbleSort(_TIterator begin, _TIterator end)
+{
+	for (_TIterator i = begin; i != end; ++i)
 	{
-		typename std::iterator_traits<_TIterator>::value_type key = *begin;
-		_TIterator i = begin, j = end - 1;
-		while (i < j)
+		for (_TIterator j = ++_TIterator(i); j != end; ++j)
 		{
-			while (i < j && *i < key)
-				++i;
-			while (i < j && *j > key)
-				--j;
-			std::swap(*i, *j);
+			if (*i > *j)
+				std::swap(*i, *j);
 		}
-		assert(i == j);
-		assert(*i == key);
-		QuickSort(begin, i);
-		QuickSort(++j, end);
 	}
+}
 }

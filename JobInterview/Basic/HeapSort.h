@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <cassert>
 #include <iterator>
 
+namespace basic
+{
 template <typename _TIterator>
 void MakeHeap(_TIterator begin, _TIterator end)
 {
@@ -77,4 +79,5 @@ void HeapSort(_TIterator begin, _TIterator end)
 			assert(IsHeap(begin, begin + i));
 		}
 	}
+}
 }

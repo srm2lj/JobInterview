@@ -22,20 +22,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 BOOST_AUTO_TEST_CASE(TestHeapSort)
 {
 	std::string str;
-	MakeHeap(str.begin(), str.end());
-	HeapSort(str.begin(), str.end());
+	basic::MakeHeap(str.begin(), str.end());
+	basic::HeapSort(str.begin(), str.end());
 	BOOST_CHECK_EQUAL(str, "");
 	for (size_t count = 10; count; --count)
 	{
 		str = "abcdefgh";
 		std::random_shuffle(str.begin(), str.end());
-		MakeHeap(str.begin(), str.end());
-		HeapSort(str.begin(), str.end());
+		basic::MakeHeap(str.begin(), str.end());
+		basic::HeapSort(str.begin(), str.end());
 		BOOST_CHECK_EQUAL(str, "abcdefgh");
 		str = "abcdefghi";
 		std::random_shuffle(str.begin(), str.end());
-		MakeHeap(str.begin(), str.end());
-		HeapSort(str.begin(), str.end());
+		basic::MakeHeap(str.begin(), str.end());
+		basic::HeapSort(str.begin(), str.end());
 		BOOST_CHECK_EQUAL(str, "abcdefghi");
 
 	}

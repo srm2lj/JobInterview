@@ -17,9 +17,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+namespace basic
+{
 template <typename _TIterator>
 void Reverse(_TIterator begin, _TIterator end)
 {
 	for (_TIterator i = begin, j = --end; i < j; ++i, --j)
 		std::swap(*i, *j);
+}
 }
