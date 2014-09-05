@@ -26,7 +26,7 @@ void MakeHeap(_TIterator begin, _TIterator end)
 	const size_t size = std::distance(begin, end);
 	for (size_t i = 1; i < size; ++i)
 	{
-		for (size_t child = i, parent = (child - 1) / 2; child > 0 && begin[child] < begin[parent]; child = parent, parent = (child - 1) / 2)
+		for (size_t child = i, parent = (child - 1) / 2; child > 0 && begin[child] > begin[parent]; child = parent, parent = (child - 1) / 2)
 			std::swap(begin[child], begin[parent]);
 	}
 }
@@ -38,7 +38,7 @@ bool IsHeap(_TIterator begin, _TIterator end)
 	for (size_t i = 1; i < size; ++i)
 	{
 		const size_t j = (i - 1) / 2;
-		if (begin[i] < begin[j])
+		if (begin[i] > begin[j])
 			return false;
 	}
 	return true;
@@ -48,4 +48,33 @@ template <typename _TIterator>
 void HeapSort(_TIterator begin, _TIterator end)
 {
 	assert(IsHeap(begin, end));
+	if (begin < end)
+	{
+		const size_t size = std::distance(begin, end);
+		for (size_t i = std::distance(begin, end) - 1; i; --i)
+		{
+			std::swap(begin[0], begin[i]);
+			for (size_t parent = 0, child1; child1 = 2 * parent + 1, child1 < i;)
+			{
+				const size_t child2 = 2 * parent + 2;
+				if (child2 < i && begin[child2] > begin[child1])
+				{
+					if (begin[child2] > begin[parent])
+						std::swap(begin[child2], begin[parent]);
+					else
+						break;
+					parent = child2;
+				}
+				else
+				{
+					if (begin[child1] > begin[parent])
+						std::swap(begin[child1], begin[parent]);
+					else
+						break;
+					parent = child1;
+				}
+			}
+			assert(IsHeap(begin, begin + i));
+		}
+	}
 }

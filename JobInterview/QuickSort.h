@@ -22,7 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 template <typename _TIterator>
 void QuickSort(_TIterator begin, _TIterator end)
 {
-	if (std::distance(begin, end) > 1)
+	if (begin < end)
 	{
 		typename std::iterator_traits<_TIterator>::value_type key = *begin;
 		_TIterator i = begin, j = end - 1;

@@ -18,11 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 #include <boost/test/auto_unit_test.hpp>
 #include "QuickSort.h"
-std::string *g_str;
+
 BOOST_AUTO_TEST_CASE(TestQuickSort)
 {
 	std::string str;
-	g_str = &str;
 	QuickSort(str.begin(), str.end());
 	BOOST_CHECK_EQUAL(str, "");
 	for (size_t count = 10; count; --count)
