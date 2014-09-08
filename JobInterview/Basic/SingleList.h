@@ -17,6 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #pragma once
 
+#include <cassert>
+
 namespace basic
 {
 template <typename _T, typename _TAllocator = std::allocator<_T> >
@@ -58,6 +60,7 @@ public:
 		_Node *pointer_;
 
 		friend class SingleList<T, TAllocator>::ConstIterator;
+		friend class SingleList;
 	};
 
 	class ConstIterator
@@ -74,6 +77,8 @@ public:
 
 	private:
 		const _Node *pointer_;
+
+		friend class SingleList;
 	};
 
     typedef Iterator iterator;
@@ -84,6 +89,8 @@ public:
 	explicit SingleList(const TAllocator &allocator);
 	explicit SingleList(size_t size, const T &value);
 	~SingleList(void);
+	void Clear(void);
+	bool Empty(void) const;
 	size_t Size(void) const;
 	const T &Front(void) const;
 	void PushFront(const T &value);
@@ -91,6 +98,7 @@ public:
 	Iterator End(void);
 	ConstIterator Begin(void) const;
 	ConstIterator End(void) const;
+	void Erase(Iterator erase);
 
 private:
 	_Node head_;
@@ -140,6 +148,26 @@ SingleList<_T, _TAllocator>::SingleList(size_t size, const T &value)
 template <typename _T, typename _TAllocator>
 SingleList<_T, _TAllocator>::~SingleList(void)
 {
+	Clear();
+}
+
+template <typename _T, typename _TAllocator>
+void SingleList<_T, _TAllocator>::Clear(void)
+{
+	_Node *p = head_.next_;
+	while (p)
+	{
+		_Node *erase = p;
+		p = p->next_;
+		nodeAllocator_.destroy(erase);
+	}
+	head_.next_ = 0;
+}
+
+template <typename _T, typename _TAllocator>
+bool SingleList<_T, _TAllocator>::Empty(void) const
+{
+	return !head_.next_;
 }
 
 template <typename _T, typename _TAllocator>
@@ -188,6 +216,18 @@ template <typename _T, typename _TAllocator>
 typename SingleList<_T, _TAllocator>::ConstIterator SingleList<_T, _TAllocator>::End(void) const
 {
 	return ConstIterator(0);
+}
+
+template <typename _T, typename _TAllocator>
+void SingleList<_T, _TAllocator>::Erase(Iterator erase)
+{
+	_Node *_erase = erase.pointer_;
+	assert(_erase);
+	_Node *p = &head_;
+	while (p->next_ != _erase)
+		p = p->next_;
+	p->next_ = _erase->next_;
+	nodeAllocator_.destroy(_erase);
 }
 
 template <typename _T, typename _TAllocator>

@@ -25,11 +25,17 @@ BOOST_AUTO_TEST_CASE(TestSingleList)
 	typedef basic::SingleList<size_t> _TSingleList;
 	_TList list;
 	_TSingleList slist;
+	BOOST_CHECK(slist.Empty());
 	for (size_t i = 0; i < 5; ++i)
 	{
 		list.push_front(i);
 		slist.PushFront(i);
 	}
+	BOOST_CHECK(!slist.Empty());
+	BOOST_CHECK_EQUAL(slist.Size(), list.size());
+	BOOST_CHECK_EQUAL(slist.Front(), list.front());
+	slist.Erase(slist.Begin());
+	list.erase(list.begin());
 	BOOST_CHECK_EQUAL(slist.Size(), list.size());
 	BOOST_CHECK_EQUAL(slist.Front(), list.front());
 	{
@@ -47,6 +53,9 @@ BOOST_AUTO_TEST_CASE(TestSingleList)
 			BOOST_CHECK_EQUAL(*i, *j);
 		BOOST_CHECK(j == _slist.End());
 	}
+	slist.Clear();
+	BOOST_CHECK(slist.Empty());
+	BOOST_CHECK_EQUAL(slist.Size(), 0);
 }
 
 BOOST_AUTO_TEST_CASE(TestSingleListAllocator)
