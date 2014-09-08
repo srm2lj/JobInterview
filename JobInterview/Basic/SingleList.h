@@ -27,12 +27,12 @@ class SingleList
 public:
 	typedef _T T;
 	typedef _TAllocator TAllocator;
-    typedef TAllocator allocator_type;
+	typedef TAllocator allocator_type;
 	typedef typename TAllocator::value_type value_type;
-    typedef typename TAllocator::pointer pointer;
-    typedef typename TAllocator::const_pointer const_pointer;
-    typedef typename TAllocator::reference reference;
-    typedef typename TAllocator::const_reference const_reference;
+	typedef typename TAllocator::pointer pointer;
+	typedef typename TAllocator::const_pointer const_pointer;
+	typedef typename TAllocator::reference reference;
+	typedef typename TAllocator::const_reference const_reference;
 
 protected:
 	struct _Node
@@ -40,10 +40,10 @@ protected:
 		T value_;
 		_Node *next_;
 	};
-    typedef typename TAllocator::template rebind<_Node>::other _TNodeAllocator;
+	typedef typename TAllocator::template rebind<_Node>::other _TNodeAllocator;
 
 public:
-    class ConstIterator;
+	class ConstIterator;
 
 	class Iterator
 	{
@@ -81,8 +81,8 @@ public:
 		friend class SingleList;
 	};
 
-    typedef Iterator iterator;
-    typedef ConstIterator const_iterator;
+	typedef Iterator iterator;
+	typedef ConstIterator const_iterator;
 
 	SingleList(void);
 	SingleList(const SingleList &list);
