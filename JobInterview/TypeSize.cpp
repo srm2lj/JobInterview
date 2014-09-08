@@ -16,7 +16,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include <boost/test/auto_unit_test.hpp>
+<<<<<<< HEAD
 //bb
+=======
+//aa
+>>>>>>> branch 'master' of ssh://git@github.com/srm2lj/JobInterview.git
 BOOST_AUTO_TEST_CASE(TestTypeSize)
 {
 	BOOST_CHECK_EQUAL(sizeof(short), 2);
