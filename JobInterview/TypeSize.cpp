@@ -14,9 +14,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
-//aa
-#include <boost/test/auto_unit_test.hpp>
 
+#include <boost/test/auto_unit_test.hpp>
+//bb
 BOOST_AUTO_TEST_CASE(TestTypeSize)
 {
 	BOOST_CHECK_EQUAL(sizeof(short), 2);
