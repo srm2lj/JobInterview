@@ -99,6 +99,7 @@ public:
 	ConstIterator Begin(void) const;
 	ConstIterator End(void) const;
 	void Erase(Iterator erase);
+	void Swap(SingleList &list);
 
 private:
 	_Node head_;
@@ -228,6 +229,12 @@ void SingleList<_T, _TAllocator>::Erase(Iterator erase)
 		p = p->next_;
 	p->next_ = _erase->next_;
 	nodeAllocator_.destroy(_erase);
+}
+
+template <typename _T, typename _TAllocator>
+void SingleList<_T, _TAllocator>::Swap(SingleList &list)
+{
+	std::swap(head_.next_, list.head_.next_);
 }
 
 template <typename _T, typename _TAllocator>
